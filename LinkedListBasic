@@ -1,0 +1,76 @@
+package com.code.practice;
+
+/*
+ * Operations : Insert(Append) / Delete / Search  
+ */
+
+/* Append Node 
+* Prepend  
+* Delete a node with a given Value
+* Traverse an LinkedList
+*/
+
+class Node {
+	//next value
+	Node next;
+	//value of node
+	int value;
+	
+	Node(int data) {
+		this.value = data;
+	}
+}
+
+public class LinkedListBasic {
+
+	Node head;
+
+	/* Inserts a new Node at front of the list. */
+	public void append(int data) {
+
+		//appends to start of list when head is null
+		if (head == null) {
+			head = new Node(data);
+			return;
+		}
+		
+		//if head is not null , iterate till last element and append new node in the end
+
+		Node current=head;
+		while(current.next!=null){
+			current=current.next;
+		}
+		current.next=new Node(data);
+		
+	}
+
+	//Prepending
+	public void prepend(int data){
+		//Assuming head is not null	
+		Node newHead=new Node(data);
+		newHead.next=head;
+		head=newHead;
+	}
+	
+	//Delete
+	public void deleteWithValue(int data){
+		if(head==null) return;
+
+		//Special Scenario : What if we want to delete the head node , it means we want to update the head value
+		if(head.value==data){
+			head=head.next;
+			return;
+		}
+		
+		Node current=head;
+		while(current.next!=null){
+			if(current.next.value==data){
+				current.next=current.next.next;
+				return;
+			}
+			current=current.next;
+		}
+		
+
+	}
+}
